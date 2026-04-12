@@ -11,9 +11,7 @@ export default function Boutiques() {
       id="boutiques"
       style={{
         padding: "140px 80px",
-        background: "#F2EDE6",
-        borderTop: "0.5px solid rgba(201,169,110,0.2)",
-        borderBottom: "0.5px solid rgba(201,169,110,0.2)",
+        background: "#0A0A0F",
         position: "relative",
         overflow: "hidden",
       }}
@@ -25,9 +23,9 @@ export default function Boutiques() {
           left: "50%",
           transform: "translate(-50%, -50%)",
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(120px, 18vw, 220px)",
+          fontSize: "clamp(100px, 16vw, 200px)",
           fontWeight: 300,
-          color: "rgba(201,169,110,0.08)",
+          color: "rgba(201,169,110,0.04)",
           whiteSpace: "nowrap",
           userSelect: "none",
           pointerEvents: "none",
@@ -35,6 +33,18 @@ export default function Boutiques() {
       >
         BOUTIQUES
       </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "30%",
+          right: "-10%",
+          width: "500px",
+          height: "500px",
+          background:
+            "radial-gradient(ellipse, rgba(201,169,110,0.07) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
       <div
         ref={ref}
         style={{
@@ -55,30 +65,25 @@ export default function Boutiques() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
           >
             <div
               style={{
-                display: "inline-flex",
+                display: "flex",
                 alignItems: "center",
-                gap: "10px",
+                gap: "14px",
                 marginBottom: "24px",
               }}
             >
               <div
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "#C9A96E",
-                }}
+                style={{ width: "32px", height: "1px", background: "#C9A96E" }}
               />
               <span
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "11px",
                   fontWeight: 500,
-                  letterSpacing: "0.2em",
+                  letterSpacing: "0.22em",
                   textTransform: "uppercase",
                   color: "#C9A96E",
                 }}
@@ -89,10 +94,10 @@ export default function Boutiques() {
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(48px, 5vw, 68px)",
+                fontSize: "clamp(44px, 5vw, 68px)",
                 fontWeight: 300,
-                color: "#0A0A0F",
-                lineHeight: 1.1,
+                color: "#FFFFFF",
+                lineHeight: 1.05,
                 whiteSpace: "pre-line",
                 marginBottom: "28px",
               }}
@@ -104,9 +109,9 @@ export default function Boutiques() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "16px",
                 fontWeight: 300,
-                color: "rgba(10,10,15,0.55)",
-                lineHeight: 1.7,
-                marginBottom: "48px",
+                color: "rgba(255,255,255,0.45)",
+                lineHeight: 1.75,
+                marginBottom: "52px",
                 maxWidth: "420px",
               }}
             >
@@ -115,25 +120,25 @@ export default function Boutiques() {
             <button
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "13px",
+                fontSize: "12px",
                 fontWeight: 500,
-                letterSpacing: "0.1em",
+                letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                padding: "16px 36px",
+                padding: "18px 40px",
                 borderRadius: "2px",
                 background: "transparent",
-                border: "1px solid #0A0A0F",
-                color: "#0A0A0F",
+                border: "1px solid rgba(201,169,110,0.5)",
+                color: "#C9A96E",
                 cursor: "pointer",
                 transition: "all 0.3s",
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = "#0A0A0F";
-                e.target.style.color = "#FAF8F5";
+                e.target.style.background = "#C9A96E";
+                e.target.style.color = "#0A0A0F";
               }}
               onMouseLeave={(e) => {
                 e.target.style.background = "transparent";
-                e.target.style.color = "#0A0A0F";
+                e.target.style.color = "#C9A96E";
               }}
             >
               {t.boutiques.cta} →
@@ -143,29 +148,29 @@ export default function Boutiques() {
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: "2px",
+              gap: "3px",
             }}
           >
             {t.boutiques.stats.map((stat, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.88 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1 + 0.3 }}
+                transition={{ duration: 0.7, delay: i * 0.12 + 0.3 }}
                 style={{
-                  padding: "40px 32px",
-                  background: i % 2 === 0 ? "#FFFFFF" : "#EDE8E0",
-                  border: "0.5px solid rgba(201,169,110,0.2)",
+                  padding: "44px 36px",
+                  background: i % 2 === 0 ? "#111118" : "#0D0D14",
+                  border: "0.5px solid rgba(201,169,110,0.12)",
                 }}
               >
                 <div
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "52px",
+                    fontSize: "56px",
                     fontWeight: 300,
                     color: "#C9A96E",
                     lineHeight: 1,
-                    marginBottom: "10px",
+                    marginBottom: "12px",
                   }}
                 >
                   {stat.value}
@@ -174,9 +179,10 @@ export default function Boutiques() {
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "12px",
-                    color: "rgba(10,10,15,0.45)",
-                    letterSpacing: "0.04em",
-                    lineHeight: 1.4,
+                    fontWeight: 300,
+                    color: "rgba(255,255,255,0.35)",
+                    letterSpacing: "0.06em",
+                    lineHeight: 1.5,
                   }}
                 >
                   {stat.label}

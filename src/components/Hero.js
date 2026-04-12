@@ -3,12 +3,6 @@ import { motion } from "framer-motion";
 import { useLang } from "../LangContext";
 import Scene3D from "./Scene3D";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 1, delay, ease: [0.16, 1, 0.3, 1] },
-});
-
 export default function Hero() {
   const { t } = useLang();
   return (
@@ -18,19 +12,31 @@ export default function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
+        background: "#0A0A0F",
         overflow: "hidden",
         padding: "0 80px",
-        background: "#FAF8F5",
       }}
     >
       <div
         style={{
           position: "absolute",
+          top: "50%",
+          right: "10%",
+          width: "600px",
+          height: "600px",
+          transform: "translateY(-50%)",
+          background:
+            "radial-gradient(ellipse, rgba(201,169,110,0.12) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
           top: 0,
-          right: "-5%",
-          width: "65%",
+          right: "-2%",
+          width: "58%",
           height: "100%",
-          opacity: 0.7,
         }}
       >
         <Scene3D style={{ width: "100%", height: "100%" }} />
@@ -40,10 +46,11 @@ export default function Hero() {
           position: "absolute",
           top: 0,
           left: 0,
-          width: "55%",
+          width: "50%",
           height: "100%",
-          background: "linear-gradient(90deg, #FAF8F5 60%, transparent 100%)",
+          background: "linear-gradient(90deg, #0A0A0F 55%, transparent 100%)",
           zIndex: 1,
+          pointerEvents: "none",
         }}
       />
       <div
@@ -52,46 +59,34 @@ export default function Hero() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "200px",
-          background: "linear-gradient(0deg, #FAF8F5 0%, transparent 100%)",
+          height: "180px",
+          background: "linear-gradient(0deg, #0A0A0F 0%, transparent 100%)",
           zIndex: 1,
+          pointerEvents: "none",
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: 0,
-          width: "40px",
-          height: "1px",
-          background: "#C9A96E",
-          zIndex: 2,
-        }}
-      />
-      <div style={{ position: "relative", zIndex: 2, maxWidth: "580px" }}>
+
+      <div style={{ position: "relative", zIndex: 2, maxWidth: "560px" }}>
         <motion.div
-          {...fadeUp(0.2)}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           style={{
-            display: "inline-flex",
+            display: "flex",
             alignItems: "center",
-            gap: "10px",
-            marginBottom: "32px",
+            gap: "12px",
+            marginBottom: "36px",
           }}
         >
           <div
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              background: "#C9A96E",
-            }}
+            style={{ width: "32px", height: "1px", background: "#C9A96E" }}
           />
           <span
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "11px",
               fontWeight: 500,
-              letterSpacing: "0.2em",
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: "#C9A96E",
             }}
@@ -99,66 +94,73 @@ export default function Hero() {
             {t.hero.tag}
           </span>
         </motion.div>
+
         <motion.h1
-          {...fadeUp(0.4)}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: "clamp(64px, 8vw, 100px)",
+            fontSize: "clamp(60px, 7.5vw, 96px)",
             fontWeight: 300,
-            lineHeight: 1.0,
-            color: "#0A0A0F",
+            lineHeight: 0.95,
+            color: "#FFFFFF",
             letterSpacing: "-0.02em",
-            marginBottom: "28px",
+            marginBottom: "32px",
             whiteSpace: "pre-line",
           }}
         >
           {t.hero.title}
         </motion.h1>
+
         <motion.p
-          {...fadeUp(0.6)}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.65 }}
           style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: "17px",
             fontWeight: 300,
-            lineHeight: 1.7,
-            color: "rgba(10,10,15,0.55)",
+            lineHeight: 1.75,
+            color: "rgba(255,255,255,0.5)",
             maxWidth: "400px",
-            marginBottom: "48px",
+            marginBottom: "52px",
           }}
         >
           {t.hero.subtitle}
         </motion.p>
+
         <motion.div
-          {...fadeUp(0.8)}
-          style={{ display: "flex", alignItems: "center", gap: "24px" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.85 }}
+          style={{ display: "flex", alignItems: "center", gap: "28px" }}
         >
           <button
             onClick={() =>
               document
                 .getElementById("download")
-                .scrollIntoView({ behavior: "smooth" })
+                ?.scrollIntoView({ behavior: "smooth" })
             }
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "13px",
+              fontSize: "12px",
               fontWeight: 500,
-              letterSpacing: "0.1em",
+              letterSpacing: "0.12em",
               textTransform: "uppercase",
-              padding: "16px 36px",
+              padding: "18px 40px",
               borderRadius: "2px",
-              background: "#0A0A0F",
+              background: "#C9A96E",
               border: "none",
-              color: "#FAF8F5",
+              color: "#0A0A0F",
               cursor: "pointer",
               transition: "all 0.3s",
             }}
             onMouseEnter={(e) => {
-              e.target.style.background = "#C9A96E";
-              e.target.style.color = "#0A0A0F";
+              e.target.style.background = "#E8D5A3";
             }}
             onMouseLeave={(e) => {
-              e.target.style.background = "#0A0A0F";
-              e.target.style.color = "#FAF8F5";
+              e.target.style.background = "#C9A96E";
             }}
           >
             {t.hero.cta}
@@ -167,21 +169,66 @@ export default function Hero() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "12px",
-              color: "rgba(10,10,15,0.35)",
+              color: "rgba(255,255,255,0.3)",
               letterSpacing: "0.04em",
             }}
           >
             {t.hero.ctaSub}
           </span>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          style={{
+            display: "flex",
+            gap: "40px",
+            marginTop: "64px",
+            paddingTop: "32px",
+            borderTop: "0.5px solid rgba(201,169,110,0.15)",
+          }}
+        >
+          {[
+            ["20+", "Boutiques partenaires"],
+            ["< 3h", "Livraison garantie"],
+            ["250€", "Panier moyen"],
+          ].map(([val, label]) => (
+            <div key={label}>
+              <div
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "28px",
+                  fontWeight: 300,
+                  color: "#C9A96E",
+                  lineHeight: 1,
+                  marginBottom: "6px",
+                }}
+              >
+                {val}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "11px",
+                  color: "rgba(255,255,255,0.35)",
+                  letterSpacing: "0.06em",
+                }}
+              >
+                {label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1.8 }}
         style={{
           position: "absolute",
-          bottom: "40px",
+          bottom: "36px",
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
@@ -194,20 +241,20 @@ export default function Hero() {
         <span
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "10px",
-            letterSpacing: "0.2em",
+            fontSize: "9px",
+            letterSpacing: "0.25em",
             textTransform: "uppercase",
-            color: "rgba(10,10,15,0.3)",
+            color: "rgba(255,255,255,0.25)",
           }}
         >
           {t.hero.scroll}
         </span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           style={{
             width: "1px",
-            height: "40px",
+            height: "44px",
             background: "linear-gradient(#C9A96E, transparent)",
           }}
         />

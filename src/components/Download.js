@@ -25,18 +25,18 @@ function QRCode() {
     0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
   ];
   const pattern = [];
-  for (let row = 0; row < cells; row++)
-    for (let col = 0; col < cells; col++)
-      if (seed[row * cells + col])
-        pattern.push({ x: col * cellSize, y: row * cellSize });
+  for (let r = 0; r < cells; r++)
+    for (let c = 0; c < cells; c++)
+      if (seed[r * cells + c])
+        pattern.push({ x: c * cellSize, y: r * cellSize });
   return (
     <div
       style={{
-        padding: "20px",
+        padding: "24px",
         background: "#FFFFFF",
         borderRadius: "4px",
-        border: "1px solid rgba(201,169,110,0.3)",
         display: "inline-block",
+        border: "0.5px solid rgba(201,169,110,0.3)",
       }}
     >
       <svg
@@ -44,11 +44,11 @@ function QRCode() {
         height={160}
         viewBox={`0 0 ${cells * cellSize} ${cells * cellSize}`}
       >
-        {pattern.map((cell, i) => (
+        {pattern.map((p, i) => (
           <rect
             key={i}
-            x={cell.x}
-            y={cell.y}
+            x={p.x}
+            y={p.y}
             width={cellSize - 1}
             height={cellSize - 1}
             fill="#0A0A0F"
@@ -58,11 +58,11 @@ function QRCode() {
       <div
         style={{
           textAlign: "center",
-          marginTop: "10px",
+          marginTop: "12px",
           fontFamily: "'DM Sans', sans-serif",
           fontSize: "10px",
           fontWeight: 500,
-          letterSpacing: "0.12em",
+          letterSpacing: "0.15em",
           textTransform: "uppercase",
           color: "#0A0A0F",
         }}
@@ -73,40 +73,40 @@ function QRCode() {
   );
 }
 
-function StoreButton({ icon, store, sub }) {
+function StoreBtn({ icon, store, sub }) {
   return (
     <button
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "14px",
-        padding: "14px 28px",
+        gap: "16px",
+        padding: "16px 28px",
         borderRadius: "4px",
-        background: "#FFFFFF",
+        background: "#0A0A0F",
         border: "1px solid rgba(201,169,110,0.3)",
         cursor: "pointer",
         transition: "all 0.3s",
-        minWidth: "180px",
+        minWidth: "190px",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = "#C9A96E";
-        e.currentTarget.style.boxShadow = "0 4px 20px rgba(201,169,110,0.15)";
+        e.currentTarget.style.background = "#111118";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "rgba(201,169,110,0.3)";
-        e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.background = "#0A0A0F";
       }}
     >
-      <span style={{ fontSize: "22px" }}>{icon}</span>
+      <span style={{ fontSize: "24px" }}>{icon}</span>
       <div style={{ textAlign: "left" }}>
         <div
           style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: "10px",
-            color: "rgba(10,10,15,0.4)",
-            letterSpacing: "0.06em",
+            color: "rgba(255,255,255,0.35)",
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
-            marginBottom: "2px",
+            marginBottom: "3px",
           }}
         >
           {sub}
@@ -114,9 +114,9 @@ function StoreButton({ icon, store, sub }) {
         <div
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "15px",
+            fontSize: "16px",
             fontWeight: 500,
-            color: "#0A0A0F",
+            color: "#FFFFFF",
           }}
         >
           {store}
@@ -146,30 +146,25 @@ export default function Download() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
           >
             <div
               style={{
-                display: "inline-flex",
+                display: "flex",
                 alignItems: "center",
-                gap: "10px",
+                gap: "14px",
                 marginBottom: "24px",
               }}
             >
               <div
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "#C9A96E",
-                }}
+                style={{ width: "32px", height: "1px", background: "#C9A96E" }}
               />
               <span
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "11px",
                   fontWeight: 500,
-                  letterSpacing: "0.2em",
+                  letterSpacing: "0.22em",
                   textTransform: "uppercase",
                   color: "#C9A96E",
                 }}
@@ -180,10 +175,10 @@ export default function Download() {
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(48px, 5vw, 68px)",
+                fontSize: "clamp(44px, 5vw, 68px)",
                 fontWeight: 300,
                 color: "#0A0A0F",
-                lineHeight: 1.1,
+                lineHeight: 1.05,
                 whiteSpace: "pre-line",
                 marginBottom: "24px",
               }}
@@ -196,67 +191,44 @@ export default function Download() {
                 fontSize: "16px",
                 fontWeight: 300,
                 color: "rgba(10,10,15,0.55)",
-                lineHeight: 1.7,
-                marginBottom: "48px",
+                lineHeight: 1.75,
+                marginBottom: "52px",
               }}
             >
               {t.download.subtitle}
             </p>
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              <div style={{ position: "relative" }}>
-                <StoreButton
-                  icon="🍎"
-                  store={t.download.ios}
-                  sub={t.download.soon}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-8px",
-                    right: "-8px",
-                    background: "#C9A96E",
-                    color: "#0A0A0F",
-                    fontSize: "9px",
-                    fontWeight: 600,
-                    letterSpacing: "0.08em",
-                    padding: "3px 8px",
-                    borderRadius: "2px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {t.download.soon}
+            <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+              {[
+                ["🍎", t.download.ios],
+                ["🤖", t.download.android],
+              ].map(([icon, store]) => (
+                <div key={store} style={{ position: "relative" }}>
+                  <StoreBtn icon={icon} store={store} sub={t.download.soon} />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      right: "-8px",
+                      background: "#C9A96E",
+                      color: "#0A0A0F",
+                      fontSize: "9px",
+                      fontWeight: 700,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      padding: "3px 9px",
+                      borderRadius: "2px",
+                    }}
+                  >
+                    {t.download.soon}
+                  </div>
                 </div>
-              </div>
-              <div style={{ position: "relative" }}>
-                <StoreButton
-                  icon="🤖"
-                  store={t.download.android}
-                  sub={t.download.soon}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "-8px",
-                    right: "-8px",
-                    background: "#C9A96E",
-                    color: "#0A0A0F",
-                    fontSize: "9px",
-                    fontWeight: 600,
-                    letterSpacing: "0.08em",
-                    padding: "3px 8px",
-                    borderRadius: "2px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {t.download.soon}
-                </div>
-              </div>
+              ))}
             </div>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.9, delay: 0.25 }}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -267,9 +239,9 @@ export default function Download() {
             <div
               style={{
                 position: "relative",
-                padding: "32px",
+                padding: "36px",
                 background: "#F2EDE6",
-                border: "1px solid rgba(201,169,110,0.25)",
+                border: "0.5px solid rgba(201,169,110,0.25)",
                 borderRadius: "4px",
               }}
             >
@@ -314,15 +286,15 @@ export default function Download() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "12px",
+                fontSize: "11px",
                 fontWeight: 300,
                 color: "rgba(10,10,15,0.35)",
-                letterSpacing: "0.08em",
+                letterSpacing: "0.1em",
                 textAlign: "center",
                 textTransform: "uppercase",
               }}
             >
-              Scannez pour télécharger / Scan to download
+              Scannez pour télécharger · Scan to download
             </p>
           </motion.div>
         </div>

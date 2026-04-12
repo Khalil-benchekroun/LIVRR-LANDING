@@ -4,44 +4,44 @@ import { useInView } from "react-intersection-observer";
 import { useLang } from "../LangContext";
 
 function Step({ step, index }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.8,
-        delay: index * 0.2,
+        duration: 0.9,
+        delay: index * 0.18,
         ease: [0.16, 1, 0.3, 1],
       }}
       style={{
-        padding: "48px 40px",
-        border: "0.5px solid rgba(201,169,110,0.3)",
+        padding: "52px 44px",
+        background: "#FFFFFF",
+        border: "0.5px solid rgba(201,169,110,0.2)",
         borderRadius: "4px",
         position: "relative",
-        background: "#FFFFFF",
-        transition: "border-color 0.3s, box-shadow 0.3s",
+        transition: "box-shadow 0.3s, transform 0.3s",
         cursor: "default",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(201,169,110,0.7)";
-        e.currentTarget.style.boxShadow = "0 8px 40px rgba(201,169,110,0.12)";
+        e.currentTarget.style.boxShadow = "0 20px 60px rgba(201,169,110,0.15)";
+        e.currentTarget.style.transform = "translateY(-4px)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(201,169,110,0.3)";
         e.currentTarget.style.boxShadow = "none";
+        e.currentTarget.style.transform = "translateY(0)";
       }}
     >
       <div
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "80px",
-          fontWeight: 300,
-          color: "rgba(201,169,110,0.15)",
           position: "absolute",
-          top: "20px",
-          right: "30px",
+          top: "24px",
+          right: "32px",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: "88px",
+          fontWeight: 300,
+          color: "rgba(201,169,110,0.1)",
           lineHeight: 1,
           userSelect: "none",
         }}
@@ -50,19 +50,19 @@ function Step({ step, index }) {
       </div>
       <div
         style={{
-          width: "40px",
-          height: "1px",
+          width: "36px",
+          height: "2px",
           background: "#C9A96E",
-          marginBottom: "28px",
+          marginBottom: "32px",
         }}
       />
       <h3
         style={{
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "32px",
+          fontSize: "34px",
           fontWeight: 400,
           color: "#0A0A0F",
-          marginBottom: "16px",
+          marginBottom: "18px",
         }}
       >
         {step.title}
@@ -73,7 +73,7 @@ function Step({ step, index }) {
           fontSize: "15px",
           fontWeight: 300,
           color: "rgba(10,10,15,0.55)",
-          lineHeight: 1.7,
+          lineHeight: 1.75,
         }}
       >
         {step.desc}
@@ -97,12 +97,11 @@ export default function HowItWorks() {
       <div
         style={{
           position: "absolute",
-          left: "80px",
-          top: "100px",
-          bottom: "100px",
-          width: "1px",
-          background:
-            "linear-gradient(transparent, rgba(201,169,110,0.3), transparent)",
+          left: 0,
+          top: "15%",
+          bottom: "15%",
+          width: "3px",
+          background: "linear-gradient(transparent, #C9A96E, transparent)",
         }}
       />
       <div ref={ref} style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -110,30 +109,25 @@ export default function HowItWorks() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          style={{ marginBottom: "80px", paddingLeft: "40px" }}
+          style={{ marginBottom: "80px" }}
         >
           <div
             style={{
-              display: "inline-flex",
+              display: "flex",
               alignItems: "center",
-              gap: "10px",
+              gap: "14px",
               marginBottom: "24px",
             }}
           >
             <div
-              style={{
-                width: "6px",
-                height: "6px",
-                borderRadius: "50%",
-                background: "#C9A96E",
-              }}
+              style={{ width: "32px", height: "1px", background: "#C9A96E" }}
             />
             <span
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
-                letterSpacing: "0.2em",
+                letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 color: "#C9A96E",
               }}
@@ -144,10 +138,10 @@ export default function HowItWorks() {
           <h2
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(48px, 5vw, 72px)",
+              fontSize: "clamp(48px, 5.5vw, 76px)",
               fontWeight: 300,
               color: "#0A0A0F",
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               whiteSpace: "pre-line",
             }}
           >
@@ -159,7 +153,6 @@ export default function HowItWorks() {
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: "24px",
-            paddingLeft: "40px",
           }}
         >
           {t.how.steps.map((step, i) => (

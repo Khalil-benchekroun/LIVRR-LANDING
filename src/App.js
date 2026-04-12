@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 export default function App() {
   return (
     <LangProvider>
-      <div style={{ background: "#FAF8F5", minHeight: "100vh" }}>
+      <div style={{ background: "#0A0A0F", minHeight: "100vh" }}>
         <Navbar />
         <Hero />
         <HowItWorks />
