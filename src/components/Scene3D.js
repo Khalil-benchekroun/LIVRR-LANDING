@@ -1,7 +1,6 @@
-import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, MeshDistortMaterial, Float, Stars } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Sphere, MeshDistortMaterial, Float, Stars } from "@react-three/drei";
 
 function GoldOrb() {
   const meshRef = useRef();
@@ -16,7 +15,6 @@ function GoldOrb() {
       <Sphere ref={meshRef} args={[1.8, 128, 128]}>
         <MeshDistortMaterial
           color="#C9A96E"
-          attach="material"
           distort={0.35}
           speed={1.5}
           roughness={0.1}
@@ -33,14 +31,21 @@ function FloatingRings() {
   const ring1 = useRef();
   const ring2 = useRef();
   const ring3 = useRef();
-
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-    if (ring1.current) { ring1.current.rotation.x = t * 0.2; ring1.current.rotation.z = t * 0.1; }
-    if (ring2.current) { ring2.current.rotation.y = t * 0.3; ring2.current.rotation.x = t * 0.15; }
-    if (ring3.current) { ring3.current.rotation.z = t * 0.25; ring3.current.rotation.y = t * 0.2; }
+    if (ring1.current) {
+      ring1.current.rotation.x = t * 0.2;
+      ring1.current.rotation.z = t * 0.1;
+    }
+    if (ring2.current) {
+      ring2.current.rotation.y = t * 0.3;
+      ring2.current.rotation.x = t * 0.15;
+    }
+    if (ring3.current) {
+      ring3.current.rotation.z = t * 0.25;
+      ring3.current.rotation.y = t * 0.2;
+    }
   });
-
   return (
     <>
       <mesh ref={ring1} rotation={[Math.PI / 2, 0, 0]}>
@@ -73,18 +78,27 @@ function ParticleField() {
     }
     return pos;
   }, []);
-
   const ref = useRef();
   useFrame((state) => {
     if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.03;
   });
-
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
+        <bufferAttribute
+          attach="attributes-position"
+          count={count}
+          array={positions}
+          itemSize={3}
+        />
       </bufferGeometry>
-      <pointsMaterial color="#C9A96E" size={0.03} transparent opacity={0.6} sizeAttenuation />
+      <pointsMaterial
+        color="#C9A96E"
+        size={0.03}
+        transparent
+        opacity={0.6}
+        sizeAttenuation
+      />
     </points>
   );
 }
@@ -95,12 +109,28 @@ export default function Scene3D({ style }) {
       style={style}
       camera={{ position: [0, 0, 7], fov: 50 }}
       gl={{ antialias: true, alpha: true }}
+      onCreated={({ gl }) => {
+        gl.setClearColor(0x000000, 0);
+      }}
     >
       <ambientLight intensity={0.2} />
       <pointLight position={[10, 10, 10]} intensity={1.5} color="#C9A96E" />
-      <pointLight position={[-10, -10, -5]} intensity={0.5} color="#ffffff" />
-      <spotLight position={[0, 10, 0]} intensity={1} color="#E8D5A3" angle={0.3} />
-      <Stars radius={80} depth={50} count={800} factor={2} saturation={0} fade speed={0.5} />
+      <pointLight position={[-10, -10, -5]} intensity={0.5} color="#C9A96E" />
+      <spotLight
+        position={[0, 10, 0]}
+        intensity={1}
+        color="#E8D5A3"
+        angle={0.3}
+      />
+      <Stars
+        radius={80}
+        depth={50}
+        count={800}
+        factor={2}
+        saturation={0}
+        fade
+        speed={0.5}
+      />
       <GoldOrb />
       <FloatingRings />
       <ParticleField />
