@@ -36,7 +36,26 @@ function QRCode() {
   );
 }
 
-function StoreBtn({ icon, store, sub, fullWidth }) {
+function AppleLogo() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.37 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="white"/>
+    </svg>
+  );
+}
+
+function GooglePlayLogo() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3.18 23.76c.3.17.64.24.99.2L16.93 12 13.07 8.14 3.18 23.76z" fill="#EA4335"/>
+      <path d="M22.14 10.64L19.38 9.1l-3.2 2.9 3.2 3.2 2.79-1.56a1.93 1.93 0 000-3.0z" fill="#FBBC04"/>
+      <path d="M3.18.24a1.93 1.93 0 00-.99 1.72v20.08c0 .7.36 1.34.99 1.72l.1.06 11.25-11.25v-.34L3.28.18l-.1.06z" fill="#4285F4"/>
+      <path d="M16.93 12L13.07 8.14l-9.89-7.9c.3-.17.64-.2.99-.06L16.93 12z" fill="#34A853"/>
+    </svg>
+  );
+}
+
+function StoreBtn({ logo, store, sub, fullWidth }) {
   return (
     <button
       style={{
@@ -55,7 +74,7 @@ function StoreBtn({ icon, store, sub, fullWidth }) {
       onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#C9A96E'; e.currentTarget.style.background = '#111118'; }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(201,169,110,0.3)'; e.currentTarget.style.background = '#0A0A0F'; }}
     >
-      <span style={{ fontSize: '24px' }}>{icon}</span>
+      <span style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>{logo}</span>
       <div style={{ textAlign: 'left' }}>
         <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '3px' }}>{sub}</div>
         <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '16px', fontWeight: 500, color: '#FFFFFF' }}>{store}</div>
@@ -71,6 +90,11 @@ export default function Download() {
 
   const sectionPadding = isMobile ? '80px 20px' : isTablet ? '100px 32px' : '140px 80px';
 
+  const storeBtns = [
+    { logo: <AppleLogo />, store: t.download.ios },
+    { logo: <GooglePlayLogo />, store: t.download.android },
+  ];
+
   return (
     <section id="download" style={{ padding: sectionPadding, background: '#FAF8F5' }}>
       <div ref={ref} style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -82,7 +106,6 @@ export default function Download() {
             alignItems: 'center',
           }}
         >
-          {/* Left: text + store buttons */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -101,11 +124,10 @@ export default function Download() {
               {t.download.subtitle}
             </p>
 
-            {/* Store buttons */}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row' }}>
-              {[[' 🍎', t.download.ios], ['🤖', t.download.android]].map(([icon, store]) => (
+              {storeBtns.map(({ logo, store }) => (
                 <div key={store} style={{ position: 'relative', flex: isMobile ? '1' : 'none' }}>
-                  <StoreBtn icon={icon} store={store} sub={t.download.soon} fullWidth={isMobile} />
+                  <StoreBtn logo={logo} store={store} sub={t.download.soon} fullWidth={isMobile} />
                   <div style={{ position: 'absolute', top: '-8px', right: '-8px', background: '#C9A96E', color: '#0A0A0F', fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '3px 9px', borderRadius: '2px' }}>
                     {t.download.soon}
                   </div>
@@ -114,7 +136,6 @@ export default function Download() {
             </div>
           </motion.div>
 
-          {/* Right: QR code — hidden on mobile (already have store buttons), shown on tablet/desktop */}
           {!isMobile && (
             <motion.div
               initial={{ opacity: 0, scale: 0.85 }}
