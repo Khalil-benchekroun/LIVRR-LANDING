@@ -26,12 +26,11 @@ export default function Hero() {
         background: '#0A0A0F',
         overflow: 'hidden',
         padding: sectionPadding,
-        paddingTop: isMobile ? '80px' : isTablet ? '100px' : '0',
+        paddingTop: isMobile ? '80px' : isTablet ? '100px' : '72px',
         flexDirection: isMobile ? 'column' : 'row',
         justifyContent: isMobile ? 'flex-start' : 'flex-start',
       }}
     >
-      {/* Background glow */}
       <div
         style={{
           position: 'absolute',
@@ -45,7 +44,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Phone — desktop: absolute right, tablet: absolute right, mobile: below text */}
       {!isMobile && (
         <>
           <div
@@ -59,7 +57,6 @@ export default function Hero() {
           >
             <Scene3D style={{ width: '100%', height: '100%' }} scale={phoneScale} />
           </div>
-          {/* Left gradient mask */}
           <div
             style={{
               position: 'absolute',
@@ -72,7 +69,6 @@ export default function Hero() {
               pointerEvents: 'none',
             }}
           />
-          {/* Bottom gradient mask */}
           <div
             style={{
               position: 'absolute',
@@ -88,7 +84,6 @@ export default function Hero() {
         </>
       )}
 
-      {/* Text content */}
       <div
         style={{
           position: 'relative',
@@ -98,7 +93,6 @@ export default function Hero() {
           paddingTop: isMobile ? '20px' : '0',
         }}
       >
-        {/* Tag */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,16 +105,15 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: isMobile ? 'clamp(56px, 16vw, 80px)' : isTablet ? 'clamp(60px, 9vw, 88px)' : 'clamp(60px, 7.5vw, 96px)',
+            fontSize: isMobile ? 'clamp(36px, 10vw, 52px)' : isTablet ? 'clamp(40px, 6vw, 60px)' : 'clamp(42px, 5vw, 68px)',
             fontWeight: 300,
-            lineHeight: 0.95,
+            lineHeight: 1.05,
             color: '#FFFFFF',
             letterSpacing: '-0.02em',
             marginBottom: '28px',
@@ -130,7 +123,6 @@ export default function Hero() {
           {t.hero.title}
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +140,6 @@ export default function Hero() {
           {t.hero.subtitle}
         </motion.p>
 
-        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,7 +172,6 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Stats bar */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -208,7 +198,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Mobile phone — shown below text */}
       {isMobile && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -220,7 +209,6 @@ export default function Hero() {
         </motion.div>
       )}
 
-      {/* Scroll indicator — desktop/tablet only */}
       {!isMobile && (
         <motion.div
           initial={{ opacity: 0 }}
