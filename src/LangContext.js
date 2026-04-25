@@ -10,7 +10,7 @@ const translations = {
     },
     hero: {
       tag: 'Paris · Livraison J0',
-      title: 'Le luxe,\nlivré.',
+      title: 'Rendre réel\nce que vous désirez,\nà l\'instant même.',
       subtitle: 'Les meilleures boutiques parisiennes à votre porte en moins de 3 heures.',
       cta: "Télécharger l'app",
       ctaSub: 'Disponible sur iOS & Android',
@@ -60,7 +60,7 @@ const translations = {
     },
     hero: {
       tag: 'Paris · Same-day delivery',
-      title: 'Luxury,\ndelivered.',
+      title: 'Making real\nwhat you desire,\nthis very instant.',
       subtitle: 'The best Parisian boutiques at your door in less than 3 hours.',
       cta: 'Download the app',
       ctaSub: 'Available on iOS & Android',
