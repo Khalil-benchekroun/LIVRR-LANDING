@@ -187,7 +187,7 @@ export default function Hero() {
         >
           {[
             ['25+', 'Boutiques partenaires'],
-            ['< 3h', 'Livraison garantie'],
+            ['< 2h', 'Livraison garantie'],
             ['250€', 'Panier moyen'],
           ].map(([val, label]) => (
             <div key={label}>
