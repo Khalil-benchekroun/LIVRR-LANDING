@@ -9,7 +9,7 @@ const translations = {
       forBoutiques: 'Pour les boutiques',
     },
     hero: {
-      tag: 'Paris · Livraison J0',
+      tag: 'Paris · Livraison J-0',
       title: 'Rendre réel\nce que vous désirez,\nà l\'instant même.',
       subtitle: 'Les meilleures boutiques parisiennes à votre porte en moins de 2 heures.',
       cta: "Télécharger l'app",
@@ -28,7 +28,7 @@ const translations = {
     boutiques: {
       tag: 'Pour les boutiques',
       title: 'Rejoignez\nla plateforme.',
-      subtitle: "LIVRR connecte vos collections aux clients premium de Paris. Zéro investissement logistique. +15 à 25% de chiffre d'affaires additionnel.",
+      subtitle: "LIVRR connecte vos collections aux clients premium de Paris. Zéro investissement logistique. +25 à 35% de chiffre d'affaires additionnel.",
       stats: [
         { value: '25+', label: 'Boutiques partenaires Day 1' },
         { value: '< 2h', label: 'Livraison en moins de 2h' },
@@ -78,7 +78,7 @@ const translations = {
     boutiques: {
       tag: 'For boutiques',
       title: 'Join\nthe platform.',
-      subtitle: "LIVRR connects your collections to Paris's premium customers. Zero logistics investment. +15 to 25% additional revenue.",
+      subtitle: "LIVRR connects your collections to Paris's premium customers. Zero logistics investment. +25 to 35% additional revenue.",
       stats: [
         { value: '25+', label: 'Partner boutiques Day 1' },
         { value: '< 2h', label: 'Delivery in under 2h' },
