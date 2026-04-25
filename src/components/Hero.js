@@ -49,10 +49,10 @@ export default function Hero() {
           <div
             style={{
               position: 'absolute',
-              top: 0,
+              top: '72px',
               right: isTablet ? '-4%' : '-2%',
               width: isTablet ? '52%' : '58%',
-              height: '100%',
+              height: 'calc(100% - 72px)',
             }}
           >
             <Scene3D style={{ width: '100%', height: '100%' }} scale={phoneScale} />
